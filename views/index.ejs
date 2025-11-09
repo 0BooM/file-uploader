@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>This is a homepage!</h1>
+    <% if(user) {%>
+    <h2>Welcome back <%= user.username %></h2>
+    <a href="/logout">Logout</a>
+    <% } else { %> Login or sign up to upload files!
     <a href="/login">Login</a>
-</body>
+        <br />
+    <a href="/sign-up">Sign up</a>
+    <% } %>
+  </body>
 </html>

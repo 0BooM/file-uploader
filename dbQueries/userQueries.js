@@ -7,3 +7,13 @@ exports.findUserByUsername = async (username) => {
 exports.findUserById = async (id) => {
   return await prisma.user.findUnique({ where: { id: Number(id) } });
 };
+
+exports.createUser = async (username, password) => {
+  // Return user for automatically logging in after registration
+  return await prisma.user.create({
+    data: {
+      username: username,
+      password: password
+    }
+  })
+}

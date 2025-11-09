@@ -3,17 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign up</title>
   </head>
   <body>
-    <h1>Login into your account</h1>
-    <form action="/login" method="post">
+    <% if(error) {%>
+    <h3 style="color: red"><%= error %></h3>
+    <% } %>
+
+    <h1>Create an account</h1>
+    <form action="/sign-up" method="post">
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" />
 
       <label for="password">Password: </label>
       <input type="password" name="password" id="password" />
-      <input type="submit" value="Login">
+      <input type="submit" value="Sign up" />
     </form>
   </body>
 </html>

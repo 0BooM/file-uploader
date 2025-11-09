@@ -22,10 +22,9 @@ app.use(express.static("public"));
 
 //Assign res.locals = user to use user in views
 app.use((req, res, next) => {
-    res.locals.user = req.user || null;
-    next()
-})
-
+  res.locals.user = req.user || null;
+  next();
+});
 
 //Index router
 const IndexRouter = require("./routes/IndexRouter");
