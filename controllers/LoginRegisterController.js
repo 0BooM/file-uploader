@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const db = require("../dbQueries/userQueries");
 const passport = require("../passport");
-const { use } = require("passport");
 
 exports.getLoginForm = (req, res) => {
   try {

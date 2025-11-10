@@ -34,6 +34,10 @@ app.use("/", IndexRouter);
 const LoginRegisterRouter = require("./routes/LoginRegisterRouter");
 app.use("/", LoginRegisterRouter);
 
+//Folder router
+const FolderRouter = require("./routes/FolderRouter");
+app.use("/", FolderRouter);
+
 app.use((req, res) => {
   res.status(404).render("404");
 });

@@ -17,3 +17,10 @@ exports.createUser = async (username, password) => {
     }
   })
 }
+
+exports.getUserById = async (id) => {
+  return await prisma.user.findUnique({
+    where: { id: id},
+    include: { folders: true }
+  });
+}
