@@ -6,6 +6,8 @@ const passport = require("passport");
 require("dotenv").config();
 const PORT = 3000;
 
+const multer = require("multer");
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -34,9 +36,22 @@ app.use("/", IndexRouter);
 const LoginRegisterRouter = require("./routes/LoginRegisterRouter");
 app.use("/", LoginRegisterRouter);
 
+//File router
+const FileRouter = require("./routes/FileRouter");
+app.use("/", FileRouter);
+
 //Folder router
 const FolderRouter = require("./routes/FolderRouter");
 app.use("/", FolderRouter);
+
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    return res.status(400).render("filesManagment/fileUploadForm", {
+      error: "File is too large. Maximum size is 20MB.",
+    });
+  }
+  next(err);
+});
 
 app.use((req, res) => {
   res.status(404).render("404");
