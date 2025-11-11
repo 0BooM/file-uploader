@@ -25,16 +25,18 @@ model User {
 model Folder {
   id     Int    @id @default(autoincrement())
   name   String
-  user   User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
   files  File[]
 }
 
 model File {
-  id       Int    @id @default(autoincrement())
-  name     String
-  folder   Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
-  folderId Int
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   Int
+  id         Int      @id @default(autoincrement())
+  name       String
+  size       Int
+  uploadTime DateTime @default(now())
+  folder     Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId   Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
 }
