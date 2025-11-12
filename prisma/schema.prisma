@@ -23,20 +23,30 @@ model User {
 }
 
 model Folder {
-  id     Int    @id @default(autoincrement())
-  name   String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int
-  files  File[]
+  id            Int            @id @default(autoincrement())
+  name          String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        Int
+  files         File[]
+  sharedFolders SharedFolder[]
 }
 
 model File {
   id         Int      @id @default(autoincrement())
   name       String
   size       Int
+  publicUrl  String
   uploadTime DateTime @default(now())
   folder     Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId   Int
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
+}
+
+model SharedFolder {
+  id        String   @id @default(uuid())
+  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId  Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }

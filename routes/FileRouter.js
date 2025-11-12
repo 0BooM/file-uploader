@@ -17,4 +17,10 @@ FileRouter.post(
   FileController.postFileUploadForm
 );
 
+FileRouter.get(
+  "/file/:file_id/download",
+  authentication.isAuthenticated,
+  FileController.downloadFile
+);
+
 module.exports = FileRouter;

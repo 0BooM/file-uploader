@@ -44,6 +44,10 @@ app.use("/", FileRouter);
 const FolderRouter = require("./routes/FolderRouter");
 app.use("/", FolderRouter);
 
+//Share router
+const ShareRouter = require("./routes/ShareRouter");
+app.use("/", ShareRouter);
+
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {
     return res.status(400).render("filesManagment/fileUploadForm", {
